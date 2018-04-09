@@ -1,12 +1,22 @@
 #!/usr/bin/env bash
+set -o nounset
+set -o errexit
+set -o pipefail
+set -o errtrace
+set -o functrace
+
 
 now=$(date +'%H%M%S')
 logname="vote_3_${now}.log"
 
+
+#
+# Sign artifacts
+#
 echo "# Starting GPG Agent #"
 gpg-connect-agent /bye
 
-list=$({ find ./svn/vote -type f -name "*.zip"; find ./rpm -type f -name "*"; })
+list=$(find ./svn/vote -type f -name "*.zip")
 
 for file in $list
 do
@@ -26,9 +36,15 @@ done < ./${logname}
 
 echo ${result}
 
-echo " "
-echo "=============================================="
-echo "Artifacts should be signed"
-echo "Please check results at ./svn/vote and ./rpm"
-echo "Each file should have corresponding *.asc file"
 
+#
+# Output result and notes
+#
+echo " "
+echo "==============================================="
+echo "Artifacts should be signed"
+echo "Please check results at ./svn/vote"
+echo "Each file should have corresponding *.asc file"
+echo
+echo "NOTE: Package files are not signed because they"
+echo "are meant to be stored in Bintray"
