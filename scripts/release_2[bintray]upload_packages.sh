@@ -51,9 +51,7 @@ upload () {
 }
 
 
-echo "# Releasing ${ignite_version}${rc_name} #"
-# Uncomment subsequent line in case you want to remove incorrectly released vote
-#svn rm -m "Removing redundant Release" https://dist.apache.org/repos/dist/release/ignite/$ignite_version || true
+echo "# Releasing ${ignite_version}${rc_name} :: Packages #"
 
 
 #
@@ -134,12 +132,9 @@ done
 
 
 #
-# Release binaries: move from dev to release
+# Remove packages from DEV
 #
-echo "3. Moving binaries to release sites"
-svn mv https://dist.apache.org/repos/dist/dev/ignite/${ignite_version}${rc_name} \
-       https://dist.apache.org/repos/dist/release/ignite/${ignite_version} \
-    -m "Release ${ignite_version}: Binaries"
+echo "3. Removing packages from Apache Ignite's DEV site"
 svn del https://dist.apache.org/repos/dist/dev/ignite/packages_${ignite_version}${rc_name} -m "Release ${ignite_version}: Removed moved to Bintray packages"
 echo
 
@@ -147,10 +142,9 @@ echo
 #
 # Output result and notes
 #
-echo "==============================================================="
-echo "Artifacts should be moved to corresponding release repositories"
+echo "============================================"
+echo "Packages should be moved to Bintray"
 echo "Please check results at:"
-echo " * binaries: https://apache.org/dist/ignite/${ignite_version}"
-echo " * rpms:     https://apache.org/dist/ignite/rpm/"
-echo " * debs:     https://apache.org/dist/ignite/deb/"
+echo " * rpms: https://apache.org/dist/ignite/rpm/"
+echo " * debs: https://apache.org/dist/ignite/deb/"
 
