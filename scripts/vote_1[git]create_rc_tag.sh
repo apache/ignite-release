@@ -3,17 +3,16 @@
 chmod +x release.properties
 . ./release.properties
 
-echo "Preparing vote ${ignite_version}${rc_name}"
+echo "Preparing tag ${ignite_version}${rc_name}"
 
 cd git
 
-echo "Removing obsolete tag..."
-echo $ignite_version
-echo $rc_name
+git fetch --tags
 
-git fetch --tags 
-git tag -d $ignite_version$rc_name
-git push origin :refs/tags/$ignite_version$rc_name
+# Uncomment to remove tag with the same name
+# echo "Removing obsolete tag..."
+# git tag -d $ignite_version$rc_name
+# git push origin :refs/tags/$ignite_version$rc_name
 
 git status
 
