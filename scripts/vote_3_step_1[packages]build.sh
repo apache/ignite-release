@@ -30,7 +30,7 @@ bash packaging/package.sh --deb
 #
 # Sign RPM packages
 #
-rpm --define "_gpg_name $(gpg --list-keys | grep uid | sed -r 's|uid\ +(.*)|\1|')" --addsign packaging/*.rpm
+rpm --define "_gpg_name $(gpg --list-keys | grep uid | head -1 | sed -r 's|uid\ +\[.*\] (.*)|\1|')" --addsign packaging/*.rpm
 
 
 #
