@@ -11,32 +11,32 @@ chmod +x release.properties
 
 
 #
-# Build RPM packages
+# Check GPG requirements
+#
+if [ "$(gpg --version | head -1 | sed -r 's|^.*([0-9]+)\.[0-9]+\.[0-9]+$|\1|')" != "2" ]; then
+    echo "[ERROR] Wrong GPG version: $(gpg --version | head -1), have to be 2.x and higher"
+    exit 1
+fi
+gpg_key="$(gpg --list-keys | grep -C1 "^pub" | tail -1 | sed -r 's|^\ +||')"
+
+
+#
+# Build packages
 #
 if [ -d packaging ]; then
-	rm -rf packaging
+    rm -rf packaging
 fi
 cp -rfv git/packaging ./
-cp -rfv svn/vote/apache-ignite-fabric-${ignite_version}-bin.zip packaging/
+cp -rfv svn/vote/apache-ignite-${ignite_version}-bin.zip packaging/
 bash packaging/package.sh --rpm
-
-
-#
-# Build DEB packages
-#
 bash packaging/package.sh --deb
 
 
 #
-# Sign RPM packages
+# Sign packages
 #
-rpm --define "_gpg_name $(gpg --list-keys | grep uid | head -1 | sed -r 's|uid\ +\[.*\] (.*)|\1|')" --addsign packaging/*.rpm
-
-
-#
-# Sign DEB packages
-#
-dpkg-sig -k $(gpg --list-keys | grep "^pub" | head -1 | cut -f2 -d / | cut -f1 -d" ") --sign builder packaging/*.deb
+rpm --define "_gpg_name ${gpg_key}" --addsign packaging/*.rpm
+dpkg-sig -k ${gpg_key} --sign builder packaging/*.deb
 
 
 #
