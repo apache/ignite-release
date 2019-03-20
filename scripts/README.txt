@@ -25,13 +25,13 @@
     - Create/Import your pgp secret key.
         In case you have no pgp key, please follow instructions from https://www.apache.org/dev/openpgp.html#generate-key
 
-        Don't forget to add your public pgp key here to https://dist.apache.org/repos/dist/release/ignite/KEYS.txt
+        Don't forget to add your public pgp key here to https://dist.apache.org/repos/dist/release/ignite/KEYS
         https://dist.apache.org is a svn repository and can be updated using your apache credentials.
 
         Append you key using commands:
 
-        gpg --list-sigs <keyname> >> KEYS.txt
-        gpg --armor --export <keyname> >> KEYS.txt
+        gpg --list-sigs <keyname> >> KEYS
+        gpg --armor --export <keyname> >> KEYS
 
     - Configure maven settings.xml (usually in /usr/share/maven/conf/ on Ubuntu):
 
