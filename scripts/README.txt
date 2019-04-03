@@ -4,7 +4,7 @@
 
 1) Software required to perform release:
     - Maven 3.x
-    - Java 7.x or 8.x
+    - Java 8.x
     - Svn command line client
     - Git command line client
         Don't forget to configure username and email
@@ -73,3 +73,6 @@
     See https://cwiki.apache.org/confluence/display/IGNITE/Release+Process for details
     Don't forget about Post-release steps
 
+See also
+- https://cwiki.apache.org/confluence/display/IGNITE/Release+manager+Notes
+for more information.
