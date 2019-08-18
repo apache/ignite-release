@@ -14,7 +14,9 @@ echo "RC ${ignite_version}${rc_name}"
 # Uncomment subsequent line in case you want to remove incorrectly prepared RC
 #svn rm -m "Removing redundant Release" https://dist.apache.org/repos/dist/dev/ignite/$ignite_version$rc_name || true
 svn import svn/vote https://dist.apache.org/repos/dist/dev/ignite/$ignite_version$rc_name -m "New RC ${ignite_version}${rc_name}: Binaries"
-svn import packaging/pkg https://dist.apache.org/repos/dist/dev/ignite/packages_$ignite_version$rc_name -m "New RC ${ignite_version}${rc_name}: Packages"
+
+# Change source folder to packaging in case locally build packages (from scripts/vote_3_step_1[packages]_optional_build.sh) should be deployed
+svn import packages/pkg https://dist.apache.org/repos/dist/dev/ignite/packages_$ignite_version$rc_name -m "New RC ${ignite_version}${rc_name}: Packages"
 
 
 #
