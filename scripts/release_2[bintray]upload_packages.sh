@@ -83,7 +83,7 @@ fi
 #  * publish
 #
 echo "1. Moving RPM packages to Bintray"
-cd packaging/pkg
+cd packages/pkg
 for rpm in *.rpm; do
     package_name=$(echo ${rpm} | \
                        sed -r "s|(.*)-${ignite_version}.*|\1|")    # Get RPM package name
@@ -110,7 +110,7 @@ cd ${OLDPWD}
 #  * publish
 #
 echo "2. Moving DEB packages to Bintray"
-cd packaging/pkg
+cd packages/pkg
 for deb in *.deb; do
     package_name=$(echo ${deb} |\
                        cut -f1 -d_)                    # Get DEB package name

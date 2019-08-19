@@ -23,25 +23,25 @@ gpg_key="$(gpg --list-keys | grep -C1 "^pub" | tail -1 | sed -r 's|^\ +||')"
 #
 # Build packages
 #
-if [ -d packaging ]; then
-    rm -rf packaging
+if [ -d packages ]; then
+    rm -rf packages
 fi
-cp -rfv git/packaging ./
-cp -rfv svn/vote/apache-ignite-${ignite_version}-bin.zip packaging/
-bash packaging/package.sh --rpm
-bash packaging/package.sh --deb
+cp -rfv git/packages ./
+cp -rfv svn/vote/apache-ignite-${ignite_version}-bin.zip packages/
+bash packages/package.sh --rpm
+bash packages/package.sh --deb
 
 
 #
 # Sign packages
 #
-rpm --define "_gpg_name ${gpg_key}" --addsign packaging/*.rpm
-dpkg-sig -k ${gpg_key} --sign builder packaging/*.deb
+rpm --define "_gpg_name ${gpg_key}" --addsign packages/*.rpm
+dpkg-sig -k ${gpg_key} --sign builder packages/*.deb
 
 
 #
 # Prepare SVN import directory
 #
-mkdir -pv packaging/pkg
-mv -fv packaging/{*.rpm,*.deb} packaging/pkg
+mkdir -pv packages/pkg
+mv -fv packages/{*.rpm,*.deb} packages/pkg
 
