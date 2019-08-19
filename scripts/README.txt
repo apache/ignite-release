@@ -1,4 +1,4 @@
-Detailed process how to prepare Ignite release can be found in Apache Ignite wiki
+The detailed process of how to prepare an Ignite release can be found in Apache Ignite wiki
     https://cwiki.apache.org/confluence/display/IGNITE/Release+Process
 
 Following scripts automate part of actions for
