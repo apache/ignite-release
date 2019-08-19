@@ -1,3 +1,13 @@
+Detailed process how to prepare Ignite release can be found in Apache Ignite wiki
+    https://cwiki.apache.org/confluence/display/IGNITE/Release+Process
+
+Following scripts automate part of actions for
+Pre-vote steps 4.3.*
+    https://cwiki.apache.org/confluence/display/IGNITE/Release+Process#ReleaseProcess-4.3.SignanddeployRCusingvotepreparationscripts
+and for post release steps 6.2.*
+    https://cwiki.apache.org/confluence/display/IGNITE/Release+Process#ReleaseProcess-6.2.RunReleasescripts
+
+
 0) In case you're on Windows, please install WSL
     See https://msdn.microsoft.com/en-us/commandline/wsl/install_guide for details
     Perform all operations in bash console! (type "bash" at windows console)
@@ -75,9 +85,4 @@
     Scripts are independent of each other and can be run in parallel, except *X_step_Y*.sh
 
 4.1) Close Vote
-    See https://cwiki.apache.org/confluence/display/IGNITE/Release+Process for details
     Don't forget about Post-release steps
-
-See also
-- https://cwiki.apache.org/confluence/display/IGNITE/Release+manager+Notes
-for more information.
