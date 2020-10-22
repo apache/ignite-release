@@ -7,6 +7,8 @@ echo "Preparing tag ${ignite_version}${rc_name}"
 
 cd git
 
+git remote set-url origin https://gitbox.apache.org/repos/asf/ignite.git
+
 git fetch --tags
 
 # Uncomment to remove tag with the same name
