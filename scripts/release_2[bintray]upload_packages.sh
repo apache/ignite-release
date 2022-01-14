@@ -130,7 +130,7 @@ for deb in *.deb; do
     repository="ignite-deb"
     component="main"
 
-    checkPackageExistance "${repository}" "${package_name}" "${description}"
+    checkPackageExistence "${repository}" "${package_name}" "${description}"
     response=$(curl -H "X-JFrog-Art-Api:${AUTH}" -X PUT "https://apache.jfrog.io/artifactory/ignite-deb/pool/$component/apache-ignite/$ignite_version/$deb;deb.distribution=apache-ignite;deb.component=$component;deb.architecture=all;overrideExistingFiles=true" -T "${deb}")
 done
 
