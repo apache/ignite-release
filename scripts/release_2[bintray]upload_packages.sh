@@ -104,7 +104,7 @@ for rpm in *.rpm; do
     repository="ignite-rpm"
 
     checkPackageExistence "${repository}" "${package_name}" "${description}"
-    response=$(curl -H "X-JFrog-Art-Api:${AUTH}" -X PUT https://apache.jfrog.io/artifactory/ignite-rpm/"${package_name}"/"${ignite_version}"/"${rpm}" -T "${rpm}")
+    response=$(curl -H "X-JFrog-Art-Api:${AUTH}" -X PUT https://apache.jfrog.io/artifactory/ignite-rpm/"${rpm}" -T "${rpm}")
 
     echo "$response"
 done
